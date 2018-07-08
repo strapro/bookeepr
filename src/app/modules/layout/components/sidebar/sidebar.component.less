@@ -8,6 +8,41 @@
   background-color: @red;
   overflow-x: hidden;
   overflow-y: auto;
-  width: 300px;
+  width: 250px;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, .3);
+}
+
+:host ::ng-deep {
+  .ui-panelmenu {
+    margin-top: 35px;
+
+    .ui-state-default {
+      background: none;
+      border: 0;
+    }
+
+    .ui-state-active {
+      background: lighten(@red, 10%);
+
+      a {
+        background: none;
+        color: @grey;
+      }
+    }
+
+    .ui-panelmenu-content {
+      .ui-menuitem-link{
+        color: @red;
+      }
+    }
+
+    .ui-panelmenu-header-link {
+      color: @grey;
+      padding: .8em .5em;
+    }
+
+    .ui-panelmenu-icon {
+      float: right;
+    }
+  }
 }

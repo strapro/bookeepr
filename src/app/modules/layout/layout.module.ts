@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 
 import {MenubarModule} from 'primeng/menubar';
+import {PanelMenuModule} from 'primeng/panelmenu';
 import {ButtonModule} from 'primeng/button';
 
 import {ContentComponent} from './components/content/content.component';
@@ -12,6 +13,7 @@ import {TopbarComponent} from './components/topbar/topbar.component';
     imports: [
         RouterModule,
         MenubarModule,
+        PanelMenuModule,
         ButtonModule
     ],
     declarations: [

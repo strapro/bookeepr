@@ -6,6 +6,7 @@ import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 import {LayoutModule} from './modules/layout/layout.module';
 import {HomepageModule} from './modules/homepage/homepage.module';
+import {HistoryModule} from './modules/history/history.module';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
@@ -17,6 +18,7 @@ import {AppRoutingModule} from './app-routing.module';
         BrowserAnimationsModule,
         LayoutModule,
         HomepageModule,
+        HistoryModule,
         AppRoutingModule,
     ],
     declarations: [
