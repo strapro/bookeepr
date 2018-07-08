@@ -1,0 +1,41 @@
+@import "../../../../app.variables.less";
+
+.layout-topbar {
+  background-color: @grey;
+  box-sizing: border-box;
+  display: block;
+  padding: 0;
+  height: 70px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9997;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3);
+}
+
+.logo {
+  float: left;
+  margin-left: 20px;
+  margin-top: -10px;
+
+  img {
+    height: 90px;
+  }
+}
+
+:host ::ng-deep .menu {
+  float: right;
+  background: none;
+  border: 0;
+  margin-top: 15px;
+
+  .ui-menuitem .ui-menuitem-link{
+    color: @red;
+  }
+
+  .ui-menubar-custom {
+    margin-left: 40px;
+  }
+}
+
