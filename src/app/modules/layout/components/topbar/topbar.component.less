@@ -29,15 +29,38 @@
     float: right;
     background: none;
     border: 0;
-    margin-top: 15px;
+    padding: 0;
+
+    .ui-menubar-root-list > .ui-menuitem > .ui-menuitem-link {
+      padding: 25px .5em 26px;
+    }
 
     .ui-menuitem .ui-menuitem-link {
       color: @red;
+      border-radius: 0;
+      padding: .8em .5em;
+
+      &:hover {
+        background: darken(@grey, 10%);
+      }
+
+    }
+
+    .ui-menuitem-active > .ui-menuitem-link {
+      background: darken(@grey, 10%);
     }
 
     .ui-menubar-custom {
-      margin-left: 40px;
+      margin: 16px 5px 0 40px;
+    }
+
+    .ui-submenu-list {
+      padding: 0;
+      border: 0;
+
+      .ui-menuitem {
+        margin: 0;
+      }
     }
   }
 }
-

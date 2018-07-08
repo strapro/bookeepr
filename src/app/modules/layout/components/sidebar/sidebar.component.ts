@@ -19,6 +19,7 @@ export class SidebarComponent implements OnInit {
         this.items = [
             {
                 label: 'Dashboard',
+                icon: 'fa fa-home',
                 routerLink: [''],
                 routerLinkActiveOptions: {
                     exact: true
@@ -26,6 +27,7 @@ export class SidebarComponent implements OnInit {
             },
             {
                 label: 'History',
+                icon: 'fa fa-list-ul',
                 routerLink: ['/history'],
                 routerLinkActiveOptions: {
                     exact: true
@@ -35,7 +37,8 @@ export class SidebarComponent implements OnInit {
                 ]
             },
             {
-                label: 'Tag manager'
+                label: 'Tag manager',
+                icon: 'fa fa-tags'
             }
         ];
     }
