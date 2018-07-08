@@ -4,7 +4,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {HistoryComponent} from './components/history/history.component';
 
 const routes: Routes = [
-    {path: '/history', component: HistoryComponent}
+    {path: 'history', component: HistoryComponent, data: {page: 'history'}}
 ];
 
 @NgModule({
