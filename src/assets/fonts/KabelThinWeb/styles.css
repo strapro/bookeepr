@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'ITCKabelHellenicW15-Book';
+    src:
+        url('ITCKabelHellenicW15-Book.eot?#iefix') format('embedded-opentype'),
+        url('ITCKabelHellenicW15-Book.otf') format('opentype'),
+        url('ITCKabelHellenicW15-Book.woff') format('woff'),
+        url('ITCKabelHellenicW15-Book.ttf') format('truetype'),
+        url('ITCKabelHellenicW15-Book.svg#ITCKabelHellenicW15-Book') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

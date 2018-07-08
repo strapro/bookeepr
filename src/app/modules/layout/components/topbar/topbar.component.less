@@ -32,7 +32,8 @@
     padding: 0;
 
     .ui-menubar-root-list > .ui-menuitem > .ui-menuitem-link {
-      padding: 25px .5em 26px;
+      padding: 27px .5em 27px;
+      margin-top: -2px;
     }
 
     .ui-menuitem .ui-menuitem-link {
@@ -57,9 +58,17 @@
     .ui-submenu-list {
       padding: 0;
       border: 0;
+      margin-top: -2px;
+      border-radius: 0;
+      background: @red;
 
       .ui-menuitem {
         margin: 0;
+
+        .ui-menuitem-link {
+          color: @grey;
+          background: none;
+        }
       }
     }
   }

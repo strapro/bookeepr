@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: 'ITCKabelHellenicW15-Book';
+    src:
+        url('assets/fonts/KabelThinWeb/ITCKabelHellenicW15-Book.eot?#iefix') format('embedded-opentype'),
+        url('assets/fonts/KabelThinWeb/ITCKabelHellenicW15-Book.otf') format('opentype'),
+        url('assets/fonts/KabelThinWeb/ITCKabelHellenicW15-Book.woff') format('woff'),
+        url('assets/fonts/KabelThinWeb/ITCKabelHellenicW15-Book.ttf') format('truetype'),
+        url('assets/fonts/KabelThinWeb/ITCKabelHellenicW15-Book.svg#ITCKabelHellenicW15-Book') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'ITCKabelHellenicW15-Book', Arial, Helvetica, sans-serif;
+}
+
+.ui-widget{
+    font-family: 'ITCKabelHellenicW15-Book', Arial, Helvetica, sans-serif;
+}
