@@ -19,6 +19,7 @@
     .ui-state-default {
       background: none;
       border: 0;
+      border-radius: 0;
     }
 
     .ui-state-active {
@@ -31,9 +32,13 @@
     }
 
     .ui-panelmenu-content {
-      .ui-menuitem-link{
+      .ui-menuitem-link {
         color: @red;
       }
+    }
+
+    .ui-panelmenu-header:not(.ui-state-active):hover a.ui-state-active {
+      color: @grey;
     }
 
     .ui-panelmenu-header-link {
