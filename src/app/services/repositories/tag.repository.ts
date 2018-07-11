@@ -4,6 +4,7 @@ import {RxCollection, RxDatabase, RxDocument, RxJsonSchema} from 'rxdb';
 
 import {RxDBService} from '../database/rxdb.service';
 import {Tag} from '../../domain/tag';
+import {Observable} from 'rxjs/Observable';
 
 type RxTagDocument = RxDocument<Tag>;
 
@@ -44,12 +45,11 @@ export class TagRepository {
         this.dbService.addCollection('tag', TagRepository.schema);
     }
 
-    public async findAll() {
-        const db: RxTagDatabase = <RxTagDatabase> await this.dbService.get(),
-            tags: Array<RxTagDocument> = await db.tag
-                .find()
-                .exec();
+    public async findAll(): Promise<Observable<Array<Tag>>> {
+        const db: RxTagDatabase = <RxTagDatabase> await this.dbService.get();
 
-        return tags;
+        return db.tag
+            .find()
+            .$;
     }
 }

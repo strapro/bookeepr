@@ -1,5 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, NgZone, OnInit} from '@angular/core';
 import {TagRepository} from '../../../../services/repositories/tag.repository';
+import {Tag} from '../../../../domain/tag';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
     selector: 'app-history',
@@ -8,14 +10,24 @@ import {TagRepository} from '../../../../services/repositories/tag.repository';
 })
 export class HistoryComponent implements OnInit {
 
-    constructor(private tagRepository: TagRepository) {
+    public tags: Array<Tag>;
+    private tags$: Observable<Array<Tag>>;
+
+    constructor(private tagRepository: TagRepository, private zone: NgZone) {
     }
 
     ngOnInit() {
-        this.tagRepository.findAll()
-            .then((res) => {
-                console.log(res);
-            });
+        this.getData();
     }
+
+    private async getData() {
+        this.tags$ = await this.tagRepository.findAll();
+        this.tags$.subscribe( (tags: Array<Tag>) => {
+            this.tags = tags;
+            this.zone.run(() => { });
+        })
+    }
+
+
 
 }

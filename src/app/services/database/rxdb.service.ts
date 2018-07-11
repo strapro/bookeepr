@@ -1,53 +1,35 @@
 import {Injectable} from '@angular/core';
 
-import RxDB from 'rxdb/plugins/core';
-import {RxDatabase, RxCollectionCreator, RxJsonSchema} from 'rxdb';
-import RxDBSchemaCheckModule from 'rxdb/plugins/schema-check';
-import RxDBErrorMessagesModule from 'rxdb/plugins/error-messages';
-import RxDBValidateModule from 'rxdb/plugins/validate';
-import RxDBLeaderElectionModule from 'rxdb/plugins/leader-election';
-import RxDBReplicationModule from 'rxdb/plugins/replication';
+import * as RxDB from 'rxdb';
 import PouchdbAdapterIdb from 'pouchdb-adapter-idb';
 import PouchAdapterHttp from 'pouchdb-adapter-http';
-
-import {environment} from '../../../environments/environment';
 
 @Injectable()
 export class RxDBService {
     static databaseName = 'bookeepr';
+    static databasePassword = '12345678';
     static useAdapter = 'idb';
     static syncUrl = 'http://' + window.location.hostname + ':10101';
-    static dbPromise: Promise<RxDatabase> = null;
+    static dbPromise: Promise<RxDB.RxDatabase> = null;
 
-    private collections: Array<RxCollectionCreator> = [];
+    private collections: Array<RxDB.RxCollectionCreator> = [];
 
     constructor() {
-        // TODO add replication stuff
+        RxDB.QueryChangeDetector.enable();
+        RxDB.QueryChangeDetector.enableDebugging();
 
-        if (environment.production === false) {
-            RxDB.plugin(RxDBErrorMessagesModule);
-            RxDB.plugin(RxDBSchemaCheckModule);
-
-            // RxDB.QueryChangeDetector.enableDebugging();
-        }
-
-        RxDB.plugin(RxDBValidateModule);
-        RxDB.plugin(RxDBLeaderElectionModule);
-        RxDB.plugin(RxDBReplicationModule);
-        RxDB.plugin(PouchAdapterHttp);
         RxDB.plugin(PouchdbAdapterIdb);
-
-        // RxDB.QueryChangeDetector.enable();
+        RxDB.plugin(PouchAdapterHttp);
     }
 
-    public addCollection(collectionName: string, schema: RxJsonSchema) {
+    public addCollection(collectionName: string, schema: RxDB.RxJsonSchema) {
         this.collections.push({
             name: collectionName,
             schema: schema,
         });
     }
 
-    public get(): Promise<RxDatabase> {
+    public get(): Promise<RxDB.RxDatabase> {
         if (RxDBService.dbPromise) {
             return RxDBService.dbPromise;
         }
@@ -57,10 +39,11 @@ export class RxDBService {
         return RxDBService.dbPromise;
     }
 
-    private async create(): Promise<RxDatabase> {
-        const db: RxDatabase = await RxDB.create({
+    private async create(): Promise<RxDB.RxDatabase> {
+        const db: RxDB.RxDatabase = await RxDB.create({
             name: RxDBService.databaseName,
             adapter: RxDBService.useAdapter,
+            password: RxDBService.databasePassword,
         });
 
         db.waitForLeadership().then(() => {
