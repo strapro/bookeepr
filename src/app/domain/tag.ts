@@ -1,5 +1,5 @@
 export interface Tag {
-    id?;
-    name?: String;
-    color?: String;
+    id?: string;
+    name?: string;
+    color?: string;
 }

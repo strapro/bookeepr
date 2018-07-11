@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {TagRepository} from '../../../../services/repositories/tag.repository';
 
 @Component({
     selector: 'app-history',
@@ -7,10 +8,14 @@ import {Component, OnInit} from '@angular/core';
 })
 export class HistoryComponent implements OnInit {
 
-    constructor() {
+    constructor(private tagRepository: TagRepository) {
     }
 
     ngOnInit() {
+        this.tagRepository.findAll()
+            .then((res) => {
+                console.log(res);
+            });
     }
 
 }

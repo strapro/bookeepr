@@ -1,6 +1,6 @@
 export interface Entity {
-    id?;
-    name?: String;
-    address?: String;
-    taxId?: String;
+    id?: string;
+    name?: string;
+    address?: string;
+    taxId?: string;
 }

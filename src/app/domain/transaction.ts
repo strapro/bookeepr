@@ -1,17 +1,14 @@
+import {TransactionType} from './transaction_type';
+import {Entity} from './entity';
+import {Tag} from './tag';
+
 export interface Transaction {
-    id?;
+    id?: string;
     type?: TransactionType;
-    amount?: Number;
-    vat?: Number;
+    amount?: number;
+    vat?: number;
     date?: Date;
-    entity?: {
-        entityId?;
-        entityName?: String;
-    };
-    tags?: Array<{
-        tagId?: String;
-        tagName?: String;
-        tagColor?: String;
-    }>;
-    comments?: String;
+    entity?: Entity;
+    tags?: Array<Tag>;
+    comments?: string;
 }
