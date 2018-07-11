@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 
-import RxDB from 'rxdb';
+import RxDB from 'rxdb/plugins/core';
 import {RxDatabase, RxCollectionCreator, RxJsonSchema} from 'rxdb';
 import RxDBSchemaCheckModule from 'rxdb/plugins/schema-check';
 import RxDBErrorMessagesModule from 'rxdb/plugins/error-messages';
@@ -34,9 +34,8 @@ export class RxDBService {
         RxDB.plugin(RxDBValidateModule);
         RxDB.plugin(RxDBLeaderElectionModule);
         RxDB.plugin(RxDBReplicationModule);
-        RxDB.plugin(PouchdbAdapterIdb);
         RxDB.plugin(PouchAdapterHttp);
-
+        RxDB.plugin(PouchdbAdapterIdb);
 
         // RxDB.QueryChangeDetector.enable();
     }
