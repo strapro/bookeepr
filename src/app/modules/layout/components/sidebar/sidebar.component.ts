@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Router, NavigationEnd} from '@angular/router';
 
 import {MenuItem} from 'primeng/api';
 
@@ -8,11 +9,15 @@ import {MenuItem} from 'primeng/api';
     styleUrls: ['./sidebar.component.less']
 })
 export class SidebarComponent implements OnInit {
-
-    items: MenuItem[];
+    items: Array<MenuItem>;
     multiple: boolean = false;
 
-    constructor() {
+    constructor(private router: Router) {
+        router.events.subscribe(event => {
+            if (event instanceof NavigationEnd) {
+                this.autoExpandFromChildRoutes(event.url);
+            }
+        });
     }
 
     ngOnInit() {
@@ -38,9 +43,32 @@ export class SidebarComponent implements OnInit {
             },
             {
                 label: 'Tag manager',
-                icon: 'fa fa-tags'
+                icon: 'fa fa-tags',
+                items: [
+                    {
+                        label: 'List',
+                        routerLink: ['/tags'],
+                        routerLinkActiveOptions: {
+                            exact: true
+                        },
+                    },
+                ]
             }
         ];
     }
 
+    private autoExpandFromChildRoutes(url: string): void {
+        this.items.forEach((item: MenuItem) => {
+            if (item.items) {
+                const children: Array<MenuItem> = <Array<MenuItem>> item.items;
+                const matchedChild: MenuItem = children.find((child: MenuItem) => {
+                    return child.routerLink && child.routerLink[0] === url;
+                });
+
+                item.expanded = !!matchedChild;
+            }
+
+            item.expanded = item.expanded || (item.routerLink && item.routerLink[0] === url);
+        });
+    }
 }

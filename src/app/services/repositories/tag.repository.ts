@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 
 import {RxCollection, RxDatabase, RxDocument, RxJsonSchema} from 'rxdb';
+import {Observable} from 'rxjs/Observable';
 
 import {RxDBService} from '../database/rxdb.service';
 import {Tag} from '../../domain/tag';
-import {Observable} from 'rxjs/Observable';
 
 type RxTagDocument = RxDocument<Tag>;
 

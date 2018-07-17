@@ -1,0 +1,36 @@
+<h1>Tags</h1>
+
+<ng-container *ngIf="tags$ | async as tags; else loading">
+    <p-table [columns]="cols" [value]="tags" selectionMode="single" [(selection)]="selected" [paginator]="true" rows="10" (onRowSelect)="onRowSelect($event)" >
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns" [ngStyle]="{'width': col.width}">
+                    {{col.header}}
+                </th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr [pSelectableRow]="rowData">
+                <td *ngFor="let col of columns">
+                    <ng-container [ngSwitch]="col.field">
+                        <ng-container *ngSwitchCase="'color'">
+                            <div class="color" [ngStyle]="{'background': rowData[col.field]}"></div>
+                        </ng-container>
+                        <ng-container *ngSwitchDefault>
+                            {{rowData[col.field]}}
+                        </ng-container>
+                    </ng-container>
+                </td>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="summary" let-rowData>
+            {{tags.length}} tags in total
+        </ng-template>
+    </p-table>
+</ng-container>
+
+<ng-template #loading>
+    Loading
+</ng-template>
