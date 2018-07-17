@@ -1,5 +1,5 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 
 import {TagRepository} from '../../../../services/repositories/tag.repository';
 import {Tag} from '../../../../domain/tag';
@@ -9,28 +9,29 @@ import {Tag} from '../../../../domain/tag';
     templateUrl: './view.component.html',
     styleUrls: ['./view.component.less']
 })
-export class ViewComponent implements OnInit, OnDestroy {
+export class ViewComponent implements OnInit {
 
-    public initialized: Promise<boolean>;
     public id: string;
     public tag: Tag;
 
-    constructor(private tagRepository: TagRepository, private route: ActivatedRoute) {
+    constructor(private tagRepository: TagRepository, private router: Router, private route: ActivatedRoute) {
         this.id = this.route.snapshot.paramMap.get('id');
     }
 
     ngOnInit() {
-        this.initialized = this.getData();
-    }
-
-    ngOnDestroy() {
-        this.initialized = Promise.resolve(false);
+        this.getData();
     }
 
     public async save() {
-        this.tag = await this.tagRepository.upsert(this.tag);
+        await this.tagRepository.upsert(this.tag);
 
-        return true;
+        this.router.navigate(['tag']);
+    }
+
+    public async delete() {
+        await this.tagRepository.delete(this.tag.id);
+
+        this.router.navigate(['tag']);
     }
 
     private async getData() {
@@ -43,8 +44,6 @@ export class ViewComponent implements OnInit, OnDestroy {
                 color: '#FFFFFF',
             });
         }
-
-        return true;
     }
 
 }

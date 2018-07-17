@@ -1,23 +1,26 @@
-<ng-container *ngIf="id; else create">
-    <h1>Edit tag</h1>
-</ng-container>
-
-<ng-template #create>
-    <h1>New tag</h1>
-</ng-template>
-
 <ng-container *ngIf="tag; else loading">
-    <span class="ui-float-label">
-        <input id="name" pInputText [(ngModel)]="tag.name">
-        <label for="name">Name</label>
-    </span>
-    <br/><br/>
-    <span class="ui-float-label">
-        <input id="color" pInputText [(ngModel)]="tag.color"> <p-colorPicker [(ngModel)]="tag.color"></p-colorPicker>
-        <label for="color">Color</label>
-    </span>
-
-    <p-button label="Save" (onClick)="save()"></p-button>
+    <div class="ui-g-12 ui-lg-6">
+        <p-card [title]=" id ? 'Edit tag' : 'New tag'" styleClass="ui-card-shadow">
+            <div>
+                <span class="ui-float-label">
+                    <input id="name" pInputText [(ngModel)]="tag.name">
+                    <label for="name">Name</label>
+                </span>
+                <br/><br/>
+                <span class="ui-float-label">
+                    <input id="color" pInputText [(ngModel)]="tag.color">
+                    <p-colorPicker [(ngModel)]="tag.color"></p-colorPicker>
+                    <label for="color">Color</label>
+                </span>
+            </div>
+            <p-footer>
+                <button pButton type="button" icon="fa fa-check" label="Save" (click)="save()" ></button>
+                <ng-container *ngIf="id;">
+                    <button pButton type="button" icon="fa fa-trash" label="Delete" class="ui-button-danger" (click)="delete()"></button>
+                </ng-container>
+            </p-footer>
+        </p-card>
+    </div>
 </ng-container>
 
 <ng-template #loading>

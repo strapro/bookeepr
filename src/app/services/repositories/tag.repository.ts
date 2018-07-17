@@ -55,12 +55,12 @@ export class TagRepository {
             .exec();
     }
 
-    public async findAll$(): Promise<Observable<Array<Tag>>> {
+    public async findAll(): Promise<Array<Tag>> {
         const db: RxTagDatabase = <RxTagDatabase> await this.dbService.get();
 
         return db.tag
             .find()
-            .$;
+            .exec();
     }
 
     public async delete(id: string): Promise<boolean> {

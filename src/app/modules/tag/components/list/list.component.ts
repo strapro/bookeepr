@@ -1,6 +1,5 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-
-import {Observable} from 'rxjs/Observable';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 import {TagRepository} from '../../../../services/repositories/tag.repository';
 import {Tag} from '../../../../domain/tag';
@@ -10,41 +9,29 @@ import {Tag} from '../../../../domain/tag';
     templateUrl: './list.component.html',
     styleUrls: ['./list.component.less']
 })
-export class ListComponent implements OnInit, OnDestroy {
+export class ListComponent implements OnInit {
 
-    public initialized: Promise<boolean>;
     public cols: any[];
     public selected: Tag;
-    public tags$: Observable<Array<Tag>> = null;
+    public tags: Promise<Array<Tag>>;
 
-    constructor(private tagRepository: TagRepository) {
+    constructor(private tagRepository: TagRepository, private router: Router) {
     }
 
     ngOnInit() {
         this.cols = [
             {field: 'color', header: 'Color', width: '70px'},
-            {field: 'name', header: 'Name', width: 'auto'},
-            {field: 'actions', header: 'Actions', width: '70px'},
+            {field: 'name', header: 'Name', width: 'auto'}
         ];
 
-        this.initialized = this.getData();
+        this.getData();
     }
 
-    ngOnDestroy() {
-        this.initialized = Promise.resolve(false);
+    public async edit(event) {
+        this.router.navigate(['tag/', event.data.id]);
     }
 
-    public onRowSelect(event) {
-
-    }
-
-    public delete(id: string): Promise<boolean> {
-        return this.tagRepository.delete(id);
-    }
-
-    private async getData(): Promise<boolean> {
-        this.tags$ = await this.tagRepository.findAll$();
-
-        return true;
+    private async getData() {
+        this.tags = this.tagRepository.findAll();
     }
 }
