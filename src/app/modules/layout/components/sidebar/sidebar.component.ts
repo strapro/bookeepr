@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Router, NavigationEnd} from '@angular/router';
+import {Router, NavigationEnd, ActivationEnd} from '@angular/router';
 
 import {MenuItem} from 'primeng/api';
 
@@ -14,8 +14,8 @@ export class SidebarComponent implements OnInit {
 
     constructor(private router: Router) {
         router.events.subscribe(event => {
-            if (event instanceof NavigationEnd) {
-                this.autoExpandFromChildRoutes(event.url);
+            if (event instanceof ActivationEnd) {
+                this.autoExpandFromChildRoutes(event.snapshot.routeConfig.path);
             }
         });
     }
@@ -47,7 +47,22 @@ export class SidebarComponent implements OnInit {
                 items: [
                     {
                         label: 'List',
-                        routerLink: ['/tags'],
+                        routerLink: ['tag'],
+                        routerLinkActiveOptions: {
+                            exact: true
+                        },
+                    },
+                    {
+                        label: 'New',
+                        routerLink: ['tag/create'],
+                        routerLinkActiveOptions: {
+                            exact: true
+                        },
+                    },
+                    {
+                        label: 'Edit',
+                        routerLink: ['tag/:id'],
+                        visible: false,
                         routerLinkActiveOptions: {
                             exact: true
                         },

@@ -1,0 +1,25 @@
+<ng-container *ngIf="id; else create">
+    <h1>Edit tag</h1>
+</ng-container>
+
+<ng-template #create>
+    <h1>New tag</h1>
+</ng-template>
+
+<ng-container *ngIf="tag; else loading">
+    <span class="ui-float-label">
+        <input id="name" pInputText [(ngModel)]="tag.name">
+        <label for="name">Name</label>
+    </span>
+    <br/><br/>
+    <span class="ui-float-label">
+        <input id="color" pInputText [(ngModel)]="tag.color"> <p-colorPicker [(ngModel)]="tag.color"></p-colorPicker>
+        <label for="color">Color</label>
+    </span>
+
+    <p-button label="Save" (onClick)="save()"></p-button>
+</ng-container>
+
+<ng-template #loading>
+    Loading
+</ng-template>

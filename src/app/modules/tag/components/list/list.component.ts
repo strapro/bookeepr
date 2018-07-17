@@ -24,12 +24,10 @@ export class ListComponent implements OnInit, OnDestroy {
         this.cols = [
             {field: 'color', header: 'Color', width: '70px'},
             {field: 'name', header: 'Name', width: 'auto'},
+            {field: 'actions', header: 'Actions', width: '70px'},
         ];
 
-        setTimeout(() => {
-            this.initialized = this.getData();
-        }, 300)
-
+        this.initialized = this.getData();
     }
 
     ngOnDestroy() {
@@ -40,8 +38,12 @@ export class ListComponent implements OnInit, OnDestroy {
 
     }
 
-    private async getData() {
-        this.tags$ = await this.tagRepository.findAll();
+    public delete(id: string): Promise<boolean> {
+        return this.tagRepository.delete(id);
+    }
+
+    private async getData(): Promise<boolean> {
+        this.tags$ = await this.tagRepository.findAll$();
 
         return true;
     }

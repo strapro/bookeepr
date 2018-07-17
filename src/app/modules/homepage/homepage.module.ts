@@ -14,7 +14,6 @@ import {HomepageRoutingModule} from './homepage-routing.module';
     imports: [
         CommonModule,
         FormsModule,
-        FormsModule,
         ReactiveFormsModule,
         TableModule,
         InputTextModule,

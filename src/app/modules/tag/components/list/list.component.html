@@ -20,6 +20,10 @@
                         <ng-container *ngSwitchDefault>
                             {{rowData[col.field]}}
                         </ng-container>
+                        <ng-container *ngSwitchCase="'actions'">
+                            <a [routerLink]="['/tag', rowData.id]"><i class="fa fa-pencil-square-o"></i></a>
+                            <a (click)="delete(rowData.id)"><i class="fa fa-minus-square-o"></i></a>
+                        </ng-container>
                     </ng-container>
                 </td>
             </tr>
