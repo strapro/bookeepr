@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
 import {ConfirmationService} from 'primeng/api';
+import {MessageService} from 'primeng/components/common/messageservice';
 
 import {RxDBService} from './services/database/rxdb.service';
 import {TagRepository} from './services/repositories/tag.repository';
@@ -11,6 +12,7 @@ import {TagRepository} from './services/repositories/tag.repository';
     styleUrls: ['./app.component.less'],
     providers: [
         ConfirmationService,
+        MessageService,
         RxDBService,
         TagRepository
     ]
