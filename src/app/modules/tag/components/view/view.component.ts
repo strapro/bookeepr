@@ -1,8 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 
+import {ConfirmationService} from 'primeng/api';
+
 import {TagRepository} from '../../../../services/repositories/tag.repository';
 import {Tag} from '../../../../domain/tag';
+
 
 @Component({
     selector: 'app-tag-view',
@@ -14,7 +17,10 @@ export class ViewComponent implements OnInit {
     public id: string;
     public tag: Tag;
 
-    constructor(private tagRepository: TagRepository, private router: Router, private route: ActivatedRoute) {
+    constructor(private router: Router,
+                private route: ActivatedRoute,
+                private confirmationService: ConfirmationService,
+                private tagRepository: TagRepository) {
         this.id = this.route.snapshot.paramMap.get('id');
     }
 
@@ -28,10 +34,16 @@ export class ViewComponent implements OnInit {
         this.router.navigate(['tag']);
     }
 
-    public async delete() {
-        await this.tagRepository.delete(this.tag.id);
+    public delete() {
+        this.confirmationService.confirm({
+            message: 'Are you sure that you want to delete this tag?',
+            header: 'Confirmation',
+            accept: async () => {
+                await this.tagRepository.delete(this.tag.id);
 
-        this.router.navigate(['tag']);
+                this.router.navigate(['tag']);
+            }
+        });
     }
 
     private async getData() {

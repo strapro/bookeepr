@@ -7,6 +7,7 @@ import {InputTextModule} from 'primeng/inputtext';
 import {ColorPickerModule} from 'primeng/colorpicker';
 import {ButtonModule} from 'primeng/button';
 import {CardModule} from 'primeng/card';
+import {ConfirmDialogModule} from 'primeng/primeng';
 
 import {TagRoutingModule} from './tag-routing.module';
 import {ListComponent} from './components/list/list.component';
@@ -22,6 +23,7 @@ import {ViewComponent} from './components/view/view.component';
         ColorPickerModule,
         CardModule,
         ButtonModule,
+        ConfirmDialogModule,
         TagRoutingModule,
     ],
     declarations: [ListComponent, ViewComponent]

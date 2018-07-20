@@ -15,7 +15,7 @@ export class ListComponent implements OnInit {
     public selected: Tag;
     public tags: Promise<Array<Tag>>;
 
-    constructor(private tagRepository: TagRepository, private router: Router) {
+    constructor(private router: Router, private tagRepository: TagRepository) {
     }
 
     ngOnInit() {
