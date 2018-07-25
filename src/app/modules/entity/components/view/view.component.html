@@ -1,0 +1,34 @@
+<ng-container *ngIf="entity; else loading">
+    <div class="ui-g-12 ui-lg-6">
+        <p-card [title]=" id ? 'Edit entity' : 'New entity'" styleClass="ui-card-shadow">
+            <div>
+                <span class="ui-float-label">
+                    <input id="name" pInputText [(ngModel)]="entity.name">
+                    <label for="name">Name</label>
+                </span>
+                <br/><br/>
+                <span class="ui-float-label">
+                    <input id="address" pInputText [(ngModel)]="entity.address">
+                    <label for="address">Address</label>
+                </span>
+                <br/><br/>
+                <span class="ui-float-label">
+                    <input id="taxId" pInputText [(ngModel)]="entity.taxId">
+                    <label for="taxId">Tax Id</label>
+                </span>
+            </div>
+            <p-footer>
+                <button pButton type="button" icon="fa fa-check" label="Save" (click)="save()"></button>
+                <ng-container *ngIf="id;">
+                    <button pButton type="button" icon="fa fa-trash" label="Delete" class="ui-button-danger" (click)="delete()"></button>
+                </ng-container>
+            </p-footer>
+        </p-card>
+    </div>
+</ng-container>
+
+<p-confirmDialog></p-confirmDialog>
+
+<ng-template #loading>
+    Loading
+</ng-template>

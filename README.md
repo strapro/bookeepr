@@ -20,3 +20,4 @@ TO ASK
 - Can I reference a template outside the scope of the component to better load loading at src/app/modules/tag/components/list/list.component.html
 - Why does tags$ not get refreshed if I revisit the page but is refreshed if I click again on the menu item 
 - Good practice to create separate components for crud operation vs popups?
+- Extending components including views?

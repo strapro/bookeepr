@@ -5,28 +5,26 @@ import {CommonModule} from '@angular/common';
 import {ButtonModule} from 'primeng/button';
 import {CardModule} from 'primeng/card';
 import {ConfirmDialogModule} from 'primeng/primeng';
-import {ColorPickerModule} from 'primeng/colorpicker';
 import {InputTextModule} from 'primeng/inputtext';
 import {TableModule} from 'primeng/table';
 
-import {TagRoutingModule} from './tag-routing.module';
+import {EntityRoutingModule} from './entity-routing.module';
 import {ListComponent} from './components/list/list.component';
 import {ViewComponent} from './components/view/view.component';
 
 @NgModule({
     imports: [
         CommonModule,
-        TagRoutingModule,
+        EntityRoutingModule,
         FormsModule,
         ReactiveFormsModule,
         ButtonModule,
         CardModule,
         ConfirmDialogModule,
-        ColorPickerModule,
         InputTextModule,
         TableModule,
     ],
     declarations: [ListComponent, ViewComponent]
 })
-export class TagModule {
+export class EntityModule {
 }

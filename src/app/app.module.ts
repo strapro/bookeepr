@@ -12,6 +12,7 @@ import {LayoutModule} from './modules/layout/layout.module';
 import {HomepageModule} from './modules/homepage/homepage.module';
 import {HistoryModule} from './modules/history/history.module';
 import {TagModule} from './modules/tag/tag.module';
+import {EntityModule} from './modules/entity/entity.module';
 
 @NgModule({
     imports: [
@@ -23,7 +24,8 @@ import {TagModule} from './modules/tag/tag.module';
         LayoutModule,
         HomepageModule,
         HistoryModule,
-        TagModule
+        TagModule,
+        EntityModule,
     ],
     declarations: [
         AppComponent

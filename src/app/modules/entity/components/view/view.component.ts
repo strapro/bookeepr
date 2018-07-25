@@ -4,33 +4,33 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ConfirmationService} from 'primeng/api';
 import {MessageService} from 'primeng/components/common/messageservice';
 
-import {TagRepository} from '../../../../services/repositories/tag.repository';
-import {Tag} from '../../../../domain/tag';
+import {EntityRepository} from '../../../../services/repositories/entity.repository';
+import {Entity} from '../../../../domain/entity';
 
 @Component({
-    selector: 'app-tag-view',
+    selector: 'app-entity-view',
     templateUrl: './view.component.html',
     styleUrls: ['./view.component.less']
 })
 export class ViewComponent implements OnInit {
 
     public id: string;
-    public tag: Tag;
+    public entity: Entity;
 
-    private deleteConfirmHeader: string = 'Delete tag';
-    private deleteConfirmMessage: string = 'Are you sure that you want to delete this tag?';
-    private deletedMessageHeader: string = 'Tag deleted';
-    private deletedMessageDetails: string = 'Tag deleted successfully';
-    private updatedMessageHeader: string = 'Tag updated';
-    private updatedMessageDetails: string = 'Tag updated successfully';
-    private createdMessageHeader: string = 'Tag created';
-    private createdMessageDetails: string = 'Tag created successfully';
+    private deleteConfirmHeader: string = 'Delete entity';
+    private deleteConfirmMessage: string = 'Are you sure that you want to delete this entity?';
+    private deletedMessageHeader: string = 'Entity deleted';
+    private deletedMessageDetails: string = 'Entity deleted successfully';
+    private updatedMessageHeader: string = 'Entity updated';
+    private updatedMessageDetails: string = 'Entity updated successfully';
+    private createdMessageHeader: string = 'Entity created';
+    private createdMessageDetails: string = 'Entity created successfully';
 
     constructor(private router: Router,
                 private route: ActivatedRoute,
                 private confirmationService: ConfirmationService,
                 private messageService: MessageService,
-                private tagRepository: TagRepository) {
+                private entityRepository: EntityRepository) {
         this.id = this.route.snapshot.paramMap.get('id');
     }
 
@@ -39,15 +39,15 @@ export class ViewComponent implements OnInit {
     }
 
     public async save() {
-        await this.tagRepository.upsert(this.tag);
+        await this.entityRepository.upsert(this.entity);
 
         this.messageService.add({
             severity: 'success',
-            summary: this.tag.id ? this.updatedMessageHeader : this.createdMessageHeader,
-            detail: this.tag.id ? this.updatedMessageDetails : this.createdMessageDetails,
+            summary: this.entity.id ? this.updatedMessageHeader : this.createdMessageHeader,
+            detail: this.entity.id ? this.updatedMessageDetails : this.createdMessageDetails,
         });
 
-        this.router.navigate(['tag']);
+        this.router.navigate(['entity']);
     }
 
     public delete() {
@@ -55,7 +55,7 @@ export class ViewComponent implements OnInit {
             message: this.deleteConfirmMessage,
             header: this.deleteConfirmHeader,
             accept: async () => {
-                await this.tagRepository.delete(this.tag.id);
+                await this.entityRepository.delete(this.entity.id);
 
                 this.messageService.add({
                     severity: 'success',
@@ -63,19 +63,20 @@ export class ViewComponent implements OnInit {
                     detail: this.deletedMessageDetails
                 });
 
-                this.router.navigate(['tag']);
+                this.router.navigate(['entity']);
             }
         });
     }
 
     private async getData() {
         if (this.id) {
-            this.tag = await this.tagRepository.findOne(this.id);
+            this.entity = await this.entityRepository.findOne(this.id);
         } else {
-            this.tag = await Promise.resolve({
+            this.entity = await Promise.resolve({
                 id: null,
                 name: '',
-                color: '#FFFFFF',
+                address: '',
+                taxId: '',
             });
         }
     }

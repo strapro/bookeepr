@@ -42,6 +42,34 @@ export class SidebarComponent implements OnInit {
                 ]
             },
             {
+                label: 'Entity manager',
+                icon: 'fa fa-cubes',
+                items: [
+                    {
+                        label: 'List',
+                        routerLink: ['entity'],
+                        routerLinkActiveOptions: {
+                            exact: true
+                        },
+                    },
+                    {
+                        label: 'New',
+                        routerLink: ['entity/create'],
+                        routerLinkActiveOptions: {
+                            exact: true
+                        },
+                    },
+                    {
+                        label: 'Edit',
+                        routerLink: ['entity/:id'],
+                        visible: false,
+                        routerLinkActiveOptions: {
+                            exact: true
+                        },
+                    },
+                ]
+            },
+            {
                 label: 'Tag manager',
                 icon: 'fa fa-tags',
                 items: [

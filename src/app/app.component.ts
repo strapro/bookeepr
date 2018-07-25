@@ -5,6 +5,7 @@ import {MessageService} from 'primeng/components/common/messageservice';
 
 import {RxDBService} from './services/database/rxdb.service';
 import {TagRepository} from './services/repositories/tag.repository';
+import {EntityRepository} from './services/repositories/entity.repository';
 
 @Component({
     selector: 'app-root',
@@ -14,7 +15,8 @@ import {TagRepository} from './services/repositories/tag.repository';
         ConfirmationService,
         MessageService,
         RxDBService,
-        TagRepository
+        TagRepository,
+        EntityRepository,
     ]
 })
 export class AppComponent implements OnInit {
