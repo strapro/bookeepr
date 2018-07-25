@@ -20,6 +20,12 @@ import {EntityRepository} from './services/repositories/entity.repository';
     ]
 })
 export class AppComponent implements OnInit {
+
+    constructor(private rxDBService: RxDBService,
+                private tagRepository: TagRepository,
+                private entityRepository: EntityRepository) {
+        rxDBService.get();
+    }
     ngOnInit() {
 
     }

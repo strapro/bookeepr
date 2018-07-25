@@ -21,3 +21,4 @@ TO ASK
 - Why does tags$ not get refreshed if I revisit the page but is refreshed if I click again on the menu item 
 - Good practice to create separate components for crud operation vs popups?
 - Extending components including views?
+- Services are created lazily. I need repositories to be created immediately. Currently I inject them in app.component.ts although I don't need them to ensure that. Any better ways?
