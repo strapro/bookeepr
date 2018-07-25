@@ -6,7 +6,7 @@ import {Observable} from 'rxjs/Observable';
 import {UUID} from 'angular2-uuid';
 
 import {RxDBService} from '../database/rxdb.service';
-import {Entity} from '../../domain/Entity';
+import {Entity} from '../../domain/entity';
 
 type RxEntityDocument = RxDocument<Entity>;
 
