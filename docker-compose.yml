@@ -1,0 +1,29 @@
+version: '2'
+services:
+  cmd:
+    build: .
+    environment:
+      NODE_ENV: development
+    volumes:
+      - .:/usr/src
+
+  serve:
+    build: .
+    command: ng serve --host 0.0.0.0 --port 4200 --public-host http://bookeepr.local
+    environment:
+      NODE_ENV: development
+    volumes:
+      - .:/usr/src
+    ports:
+      - "4200:4200"
+    depends_on:
+      - couchdb
+    # see: https://github.com/docker/compose/issues/2231#issuecomment-165137408
+    #tty: true # problem: https://github.com/docker/compose/issues/3783
+
+  couchdb:
+    image: couchdb
+    volumes:
+      - ./database:/opt/couchdb/data
+    ports:
+      - "5984:5984"

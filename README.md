@@ -1,18 +1,14 @@
-pouchdb-server \ 
-    --host 0.0.0.0 \
-    --port 10101 \ 
-    --dir ./db  
-     
-ng serve 
-    --host 0.0.0.0 \
-    --port 4200 \
-    --public-host http://bookeepr.local \
-    --poll=400
+sudo docker-compose run --rm cmd npm install
 
-./start.sh
+sudo docker-compose run --rm cmd ng lint
+
+sudo docker-compose up serve
+
+sudo docker-compose down
 
 http://bookeepr.local:4200
-http://bookeepr.local:10101/_utils/
+
+http://bookeepr.local:5984/_utils/
 
 TO ASK
 

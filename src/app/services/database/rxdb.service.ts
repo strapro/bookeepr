@@ -9,7 +9,7 @@ export class RxDBService {
     static databaseName = 'bookeepr';
     static databasePassword = '12345678';
     static useAdapter = 'idb';
-    static syncUrl = 'http://' + window.location.hostname + ':10101';
+    static syncUrl = 'http://admin:admin@' + window.location.hostname + ':5984';
     static dbPromise: Promise<RxDB.RxDatabase> = null;
 
     private collections: Array<RxDB.RxCollectionCreator> = [];
