@@ -1,24 +1,33 @@
 <ng-container *ngIf="tags | async as tags; else loading">
     <p-card title="Tags" styleClass="ui-card-shadow">
-        <p-table [columns]="cols" [value]="tags" selectionMode="single" [(selection)]="selected" [paginator]="true" rows="10" (onRowSelect)="edit($event)" >
+        <p-table #dt [columns]="cols" [value]="tags" selectionMode="single" [(selection)]="selected" [paginator]="true"
+                 [rows]="10" (onRowSelect)="edit($event)">
             <ng-template pTemplate="header" let-columns>
                 <tr>
                     <th *ngFor="let col of columns" [ngStyle]="{'width': col.width}">
                         {{col.header}}
                     </th>
                 </tr>
+                <tr>
+                    <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                        <ng-container *ngSwitchCase="'color'">
+
+                        </ng-container>
+                        <ng-container *ngSwitchDefault>
+                            <input pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                        </ng-container>
+                    </th>
+                </tr>
             </ng-template>
 
             <ng-template pTemplate="body" let-rowData let-columns="columns">
                 <tr [pSelectableRow]="rowData">
-                    <td *ngFor="let col of columns">
-                        <ng-container [ngSwitch]="col.field">
-                            <ng-container *ngSwitchCase="'color'">
-                                <div class="color" [ngStyle]="{'background': rowData[col.field]}"></div>
-                            </ng-container>
-                            <ng-container *ngSwitchDefault>
-                                {{rowData[col.field]}}
-                            </ng-container>
+                    <td *ngFor="let col of columns" [ngSwitch]="col.field">
+                        <ng-container *ngSwitchCase="'color'">
+                            <div class="color" [ngStyle]="{'background': rowData[col.field]}"></div>
+                        </ng-container>
+                        <ng-container *ngSwitchDefault>
+                            {{rowData[col.field]}}
                         </ng-container>
                     </td>
                 </tr>
