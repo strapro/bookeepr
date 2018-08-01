@@ -31,14 +31,31 @@ export class SidebarComponent implements OnInit {
                 }
             },
             {
-                label: 'History',
+                label: 'Transactions',
                 icon: 'fa fa-list-ul',
-                routerLink: ['/history'],
-                routerLinkActiveOptions: {
-                    exact: true
-                },
                 items: [
-                    {label: 'Omega'},
+                    {
+                        label: 'List',
+                        routerLink: ['transaction'],
+                        routerLinkActiveOptions: {
+                            exact: true
+                        },
+                    },
+                    {
+                        label: 'New',
+                        routerLink: ['transaction/create'],
+                        routerLinkActiveOptions: {
+                            exact: true
+                        },
+                    },
+                    {
+                        label: 'Edit',
+                        routerLink: ['transaction/:id'],
+                        visible: false,
+                        routerLinkActiveOptions: {
+                            exact: true
+                        },
+                    },
                 ]
             },
             {
