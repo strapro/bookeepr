@@ -1,3 +1,60 @@
-<p>
-  view works!
-</p>
+<ng-container *ngIf="transaction; else loading">
+    <div class="ui-g-12 ui-lg-6">
+        <p-card [title]=" id ? 'Edit transaction' : 'New transaction'" styleClass="ui-card-shadow">
+            <div>
+                <span class="ui-float-label">
+                    <p-radioButton name="type" [value]="transactionTypes.Income" label="Income"
+                                   [(ngModel)]="transaction.type"></p-radioButton>
+                    <p-radioButton name="type" [value]="transactionTypes.Expense" label="Expense"
+                                   [(ngModel)]="transaction.type"></p-radioButton>
+                </span>
+                <br/><br/>
+                <span class="ui-float-label">
+                    <input type="text" id="amount" [(ngModel)]="transaction.amount" pInputText pKeyFilter="pnum">
+                    <label for="amount">Amount</label>
+                </span>
+                <br/><br/>
+                <span class="ui-float-label">
+                    <input type="text" id="vat" [(ngModel)]="transaction.vat" pInputText pKeyFilter="pint">
+                    <label for="vat">Vat</label>
+                </span>
+                <br/><br/>
+                <span class="ui-float-label">
+                    <p-calendar id="date" [(ngModel)]="transaction.date" dateFormat="dd/mm/yy"></p-calendar>
+                    <label for="date">Date</label>
+                </span>
+                <br/><br/>
+                <span class="ui-float-label">
+                    <p-dropdown id="entity" [options]="entities" [(ngModel)]="transaction.entity" optionLabel="name"
+                                [filter]="true" [showClear]="true" placeholder="&nbsp;"></p-dropdown>
+                    <label for="entity">Entity</label>
+                </span>
+                <br/><br/>
+                <span class="ui-float-label">
+                    <p-autoComplete id="tags" [suggestions]="filteredTags" [(ngModel)]="transaction.tags" [multiple]="true"
+                                    (completeMethod)="tagSearch($event)" field="name"></p-autoComplete>
+                    <label for="tags">Tags</label>
+                </span>
+                <br/><br/>
+                <span class="ui-float-label">
+                    <textarea id="comments" [(ngModel)]="transaction.comments"></textarea>
+                    <label for="comments">Comments</label>
+                </span>
+                <br/><br/>
+            </div>
+            <p-footer>
+                <button pButton type="button" icon="fa fa-check" label="Save" (click)="save()"></button>
+                <ng-container *ngIf="id;">
+                    <button pButton type="button" icon="fa fa-trash" label="Delete" class="ui-button-danger"
+                            (click)="delete()"></button>
+                </ng-container>
+            </p-footer>
+        </p-card>
+    </div>
+</ng-container>
+
+<p-confirmDialog></p-confirmDialog>
+
+<ng-template #loading>
+    Loading
+</ng-template>

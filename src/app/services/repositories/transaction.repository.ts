@@ -4,6 +4,7 @@ import {RxCollection, RxDatabase, RxDocument, RxJsonSchema} from 'rxdb';
 import {Observable} from 'rxjs/Observable';
 
 import {UUID} from 'angular2-uuid';
+import * as moment from 'moment';
 
 import {RxDBService} from '../database/rxdb.service';
 import {Transaction} from '../../domain/transaction';
@@ -57,7 +58,7 @@ export class TransactionRepository {
                     "type": "string"
                 },
             },
-            'string': {
+            'comments': {
                 'type': 'string',
             },
         },
@@ -71,9 +72,23 @@ export class TransactionRepository {
     public async findOne(id: string): Promise<Transaction> {
         const db: RxTransactionDatabase = <RxTransactionDatabase> await this.dbService.get();
 
-        return db.transaction
+        let transaction: RxTransactionDocument = await db.transaction
             .findOne({id: {$eq: id}})
             .exec();
+
+        let tags: Array<Tag> = await transaction.populate('tags');
+        let entity: Entity = await transaction.populate('entity');
+
+        return {
+            id: transaction.id,
+            type: transaction.type,
+            amount: transaction.amount,
+            vat: transaction.vat,
+            date: moment(transaction.date).toDate(),
+            entity: entity,
+            tags: tags,
+            comments: transaction.comments,
+        }
     }
 
     public async findAll(): Promise<Array<Transaction>> {
@@ -100,9 +115,9 @@ export class TransactionRepository {
         await db.transaction.upsert({
             id: transaction.id ? transaction.id : UUID.UUID(),
             type: <number> transaction.type,
-            amount: transaction.amount,
-            vat: transaction.vat,
-            date: transaction.date,
+            amount: parseFloat(<any> transaction.amount),
+            vat: parseFloat(<any> transaction.vat),
+            date: <Date><any> moment(transaction.date).format('DD/MM/YYYY'),
             entity: <Entity><any> transaction.entity.id,
             tags: <Array<Tag>><any> transaction.tags.map( t => t.id),
             comments: transaction.comments,
