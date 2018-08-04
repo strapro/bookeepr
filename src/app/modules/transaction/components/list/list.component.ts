@@ -26,7 +26,7 @@ export class ListComponent implements OnInit {
             {field: 'amount', header: 'Amount', width: '100px'},
             {field: 'vat', header: 'Vat', width: '50px'},
             {field: 'date', header: 'Date', width: '100px'},
-            {field: 'entity', header: 'Entity', width: '300px'},
+            {field: 'entity', header: 'Entity', width: '200px'},
             {field: 'tags', header: 'Tags', width: 'auto'},
             {field: 'comments', header: 'Comments', width: 'auto'},
         ];
