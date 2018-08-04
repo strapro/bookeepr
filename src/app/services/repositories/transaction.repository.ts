@@ -76,10 +76,12 @@ export class TransactionRepository {
             .findOne({id: {$eq: id}})
             .exec();
 
+        let hydratedTransaction: Transaction;
+
         let tags: Array<Tag> = await transaction.populate('tags');
         let entity: Entity = await transaction.populate('entity');
 
-        return {
+        hydratedTransaction = {
             id: transaction.id,
             type: transaction.type,
             amount: transaction.amount,
@@ -88,15 +90,37 @@ export class TransactionRepository {
             entity: entity,
             tags: tags,
             comments: transaction.comments,
-        }
+        };
+
+        return hydratedTransaction;
     }
 
     public async findAll(): Promise<Array<Transaction>> {
         const db: RxTransactionDatabase = <RxTransactionDatabase> await this.dbService.get();
 
-        return db.transaction
+        let transactions: Array<RxTransactionDocument> = await db.transaction
             .find()
             .exec();
+
+        let hydratedTransactions: Array<Transaction> = [];
+
+        transactions.map(async(transaction) => {
+            let tags: Array<Tag> = await transaction.populate('tags');
+            let entity: Entity = await transaction.populate('entity');
+
+            hydratedTransactions.push({
+                id: transaction.id,
+                type: transaction.type,
+                amount: transaction.amount,
+                vat: transaction.vat,
+                date: moment(transaction.date).toDate(),
+                entity: entity,
+                tags: tags,
+                comments: transaction.comments,
+            })
+        });
+
+        return hydratedTransactions;
     }
 
     public async delete(id: string): Promise<boolean> {
