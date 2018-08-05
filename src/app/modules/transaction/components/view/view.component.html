@@ -2,6 +2,7 @@
     <div class="ui-g-12 ui-lg-6">
         <p-card [title]=" id ? 'Edit transaction' : 'New transaction'" styleClass="ui-card-shadow">
             <div>
+                <br/><br/>
                 <span class="ui-float-label">
                     <p-radioButton name="type" [value]="transactionTypes.Income" label="Income"
                                    [(ngModel)]="transaction.type"></p-radioButton>
@@ -37,7 +38,7 @@
                 </span>
                 <br/><br/>
                 <span class="ui-float-label">
-                    <textarea id="comments" [(ngModel)]="transaction.comments"></textarea>
+                    <textarea pInputTextarea id="comments" [(ngModel)]="transaction.comments"></textarea>
                     <label for="comments">Comments</label>
                 </span>
                 <br/><br/>
