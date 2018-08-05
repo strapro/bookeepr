@@ -1,5 +1,5 @@
 <ng-container *ngIf="transactions | async as transactions; else loading">
-    <p-card title="Entities" styleClass="ui-card-shadow">
+    <p-card title="Transactions" styleClass="ui-card-shadow">
         <p-table #dt [columns]="cols" [value]="transactions" selectionMode="single" [(selection)]="selected"
                  [paginator]="true"
                  [rows]="10" (onRowSelect)="edit($event)">
