@@ -32,8 +32,15 @@
                 </span>
                 <br/><br/>
                 <span class="ui-float-label">
-                    <p-autoComplete id="tags" [suggestions]="filteredTags" [(ngModel)]="transaction.tags" [multiple]="true"
-                                    (completeMethod)="tagSearch($event)" field="name"></p-autoComplete>
+                    <p-autoComplete id="tags" [suggestions]="filteredTags" [(ngModel)]="transaction.tags"
+                                    [multiple]="true"
+                                    (completeMethod)="tagSearch($event)" field="name">
+                        <ng-template let-tag pTemplate="selectedItem">
+                            <span class="ui-autocomplete-token-label" [ngStyle]="{'background-color':tag.color}">
+                                {{tag.name}}
+                            </span>
+                        </ng-template>
+                    </p-autoComplete>
                     <label for="tags">Tags</label>
                 </span>
                 <br/><br/>
