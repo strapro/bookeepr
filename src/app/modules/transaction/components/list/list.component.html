@@ -34,7 +34,7 @@
                         <ng-container *ngSwitchCase="'tags'">
                             <ul class="ui-widget ui-inputtext">
                                 <li *ngFor="let tag of rowData[col.field]" class="ui-autocomplete-token ui-state-highlight ui-corner-all ng-tns-c10-16 ng-star-inserted" [ngStyle]="{'background': tag.color}">
-                                    <span class="ui-autocomplete-token-label ng-tns-c10-16">{{tag.name}}</span>
+                                    <span class="ui-autocomplete-token-label">{{tag.name}}</span>
                                 </li>
                             </ul>
                         </ng-container>
