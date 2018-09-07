@@ -88,7 +88,7 @@ export class TransactionRepository {
             vat: transaction.vat,
             date: moment(transaction.date).toDate(),
             entity: entity,
-            tags: tags,
+            tags: tags.filter( t => t !== null ),
             comments: transaction.comments,
         };
 
@@ -115,7 +115,7 @@ export class TransactionRepository {
                 vat: transaction.vat,
                 date: moment(transaction.date).toDate(),
                 entity: entity,
-                tags: tags,
+                tags: tags.filter( t => t !== null ),
                 comments: transaction.comments,
             })
         });
