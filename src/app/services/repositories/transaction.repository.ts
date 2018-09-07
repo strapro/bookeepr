@@ -141,7 +141,7 @@ export class TransactionRepository {
             type: <number> transaction.type,
             amount: parseFloat(<any> transaction.amount),
             vat: parseFloat(<any> transaction.vat),
-            date: <Date><any> moment(transaction.date).format('DD/MM/YYYY'),
+            date: <Date><any> moment(transaction.date).format('YYYY-MM-DD'),
             entity: <Entity><any> transaction.entity.id,
             tags: <Array<Tag>><any> transaction.tags.map( t => t.id),
             comments: transaction.comments,

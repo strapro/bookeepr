@@ -26,7 +26,7 @@
                             {{rowData[col.field] === transactionTypes.Income ? 'Income': 'Expense'}}
                         </ng-container>
                         <ng-container *ngSwitchCase="'date'">
-                            {{rowData[col.field] | amDateFormat:'DD/MM/YYYY'}}
+                            {{rowData[col.field] | amDateFormat:'YYYY-MM-DD'}}
                         </ng-container>
                         <ng-container *ngSwitchCase="'entity'">
                             {{rowData[col.field]['name']}}
