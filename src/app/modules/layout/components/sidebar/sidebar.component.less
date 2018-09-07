@@ -16,43 +16,72 @@
   .ui-panelmenu {
     margin-top: 35px;
 
-    .ui-menuitem-icon {
-      width: 25px;
-      text-align: center;
+    .ui-panelmenu-panel {
+      margin-top: 0;
     }
 
-    .ui-state-default {
-      background: none;
+    .ui-panelmenu-header {
+
+      .ui-panelmenu-icon {
+        float: right;
+        color: @grey !important;
+      }
+
+      .ui-menuitem-icon {
+        width: 25px;
+        text-align: center;
+      }
+
+      &.ui-state-default {
+        a {
+          background: none;
+          border: 0 !important;
+          color: @grey;
+
+          &:hover {
+            background: lighten(@red, 10%);
+            color: @grey;
+          }
+        }
+      }
+
+      &.ui-state-active {
+        a {
+          background: darken(@red, 10%);
+          border: 0 !important;
+          color: @grey;
+
+          &:hover {
+            background: darken(@red, 10%);
+            color: @grey;
+          }
+        }
+      }
+    }
+
+    .ui-panelmenu-content{
       border: 0;
-      border-radius: 0;
-    }
 
-    .ui-state-active {
-      background: lighten(@red, 10%);
-
-      a {
-        background: none;
-        color: @grey;
+      .ui-menuitem {
+        border-radius: 0;
       }
-    }
 
-    .ui-panelmenu-content {
       .ui-menuitem-link {
-        color: @red;
+        border-radius: 0;
+        padding-left: 25px !important;
+
+        &:hover {
+          background: darken(@grey, 10%) !important;
+        }
+
+        &.ui-state-active {
+          background: darken(@grey, 10%);
+
+          &:hover {
+            background: darken(@grey, 10%);
+          }
+        }
       }
-    }
-
-    .ui-panelmenu-header:not(.ui-state-active):hover a.ui-state-active {
-      color: @grey;
-    }
-
-    .ui-panelmenu-header-link {
-      color: @grey;
-      padding: .8em .5em;
-    }
-
-    .ui-panelmenu-icon {
-      float: right;
     }
   }
 }

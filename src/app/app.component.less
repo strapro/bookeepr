@@ -1,3 +1,25 @@
-:host ::ng-deep table .ui-inputtext {
-  width: 100%;
+@import "app.variables.less";
+
+:host ::ng-deep {
+  .ui-growl {
+    top: 80px;
+  }
+
+  .ui-button {
+    background: @blue;
+    border: 1px solid @blue;
+
+    &:enabled:hover{
+      background: darken(@blue, 10%);
+      border: 1px solid darken(@blue, 10%);
+    }
+  }
+
+  table .ui-inputtext {
+    width: 100%;
+  }
+
+  .ui-paginator .ui-paginator-pages .ui-paginator-page.ui-state-active {
+    background-color: @orange;
+  }
 }

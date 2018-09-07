@@ -32,42 +32,45 @@
     padding: 0;
 
     .ui-menubar-root-list > .ui-menuitem > .ui-menuitem-link {
-      padding: 27px .5em 27px;
-      margin-top: -2px;
-    }
-
-    .ui-menuitem .ui-menuitem-link {
-      color: @red;
-      border-radius: 0;
-      padding: .8em .5em;
-
-      &:hover {
-        background: darken(@grey, 10%);
-      }
-
-    }
-
-    .ui-menuitem-active > .ui-menuitem-link {
-      background: darken(@grey, 10%);
+      padding: 25px .5em 24px;
     }
 
     .ui-menubar-custom {
       margin: 16px 5px 0 40px;
     }
 
+    .ui-menuitem .ui-menuitem-link {
+      color: @red;
+      padding: .8em .5em;
+    }
+
     .ui-submenu-list {
       padding: 0;
       border: 0;
-      margin-top: -2px;
       border-radius: 0;
       background: @red;
 
       .ui-menuitem {
         margin: 0;
 
-        .ui-menuitem-link {
+        .ui-menuitem-link, .ui-menuitem-text {
           color: @grey;
-          background: none;
+          background-color: transparent;
+
+          &:hover {
+            color: @grey;
+            background-color: transparent;
+          }
+        }
+
+        &:hover {
+          background: lighten(@red, 10%);
+        }
+      }
+
+      .ui-menuitem.ui-menuitem-active {
+        .ui-menuitem-link, .ui-menuitem-text {
+          color: @grey;
         }
       }
     }

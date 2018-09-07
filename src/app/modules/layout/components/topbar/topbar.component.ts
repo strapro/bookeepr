@@ -24,6 +24,7 @@ export class TopbarComponent implements OnInit {
                 label: 'THEMES',
                 items: [
                     {label: 'Omega'},
+                    {label: 'Beta'},
                 ]
             },
             {
